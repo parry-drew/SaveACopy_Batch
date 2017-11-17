@@ -24,8 +24,11 @@ def save_as_copy_loop(d, versions):
     for mxd in os.listdir(d):
         if mxd.endswith(".mxd"):
             for version in versions:
-                print("\n    saveACopy output : " + root +"\\"+ version +"\\"+ mxd)
-                arcpy.mapping.MapDocument(mxd).saveACopy(root +"\\"+ version +"\\"+ mxd , version)
+                i = os.path.join(d, mxd)
+                o = os.path.join(root , version , mxd)
+                print("\n    Output: " + o)
+                #arcpy.mapping.MapDocument(mxd).saveACopy(root +"\\"+ version +"\\"+ mxd , version)
+                arcpy.mapping.MapDocument(i).saveACopy(o, version)
 
 def main():
     print('    What earlier version of ArcGIS do need to make? ')
@@ -37,7 +40,7 @@ def main():
 
     start = timeit.default_timer()
     print('\n    PROCESSING ...')
-    manage_directories(directory)
+    #manage_directories(directory)
     save_as_copy_loop(raw_mxds , directory)
     stop = timeit.default_timer()
     print("\n    COMPLETED! Total Run Time: " +  str(stop - start) + " seconds")
