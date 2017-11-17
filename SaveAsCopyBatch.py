@@ -5,7 +5,7 @@
 # This script is a batch processing tool for copying MXDs into a format that can be
 # used by older versions of ArcMap.
 #
-# C:\Python27\ArcGIS10.4\python.exe SaveAsCopyBatch.py
+# C:\Python27\ArcGIS10.4\python.exe SaveACopyBatch.py
 #
 # ---------------------------------------------------------------------------
 import os, datetime, timeit, shutil, zipfile, arcpy
