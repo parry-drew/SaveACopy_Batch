@@ -8,7 +8,7 @@ This script is a batch processing tool for copying MXDs into a format that can b
 
 3. Run the following command :
  ```
- C:\Python27\ArcGIS10.4\python.exe SaveAsCopyBatch.py
+ C:\Python27\ArcGIS10.4\python.exe SaveACopyBatch.py
  ```
 
 4. First you will be prompted to define what previous version(s) of ArcMap you want your mxd to exported as. The following values are excepted individually or as a group:

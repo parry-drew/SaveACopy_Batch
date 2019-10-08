@@ -5,7 +5,7 @@
 # This script is a batch processing tool for copying MXDs into a format that can be
 # used by older versions of ArcMap.
 #
-# C:\Python27\ArcGIS10.4\python.exe SaveACopyBatch.py
+# C:\Python27\ArcGIS10.6\python.exe SaveACopyBatch.py
 #
 # ---------------------------------------------------------------------------
 import os, datetime, timeit, shutil, zipfile, arcpy
@@ -14,11 +14,12 @@ root = os.path.abspath(os.path.curdir)
 
 def manage_directories(d):
     for i in d:
-        if os.path.exists(root + "\\" + i):
-            shutil.rmtree(root + "\\" + i)
-            os.makedirs(root + "\\" + i)
+        path = os.path.join(root , i)
+        if os.path.exists(path):
+            shutil.rmtree(path)
+            os.makedirs(path)
         else:
-            os.makedirs(root + "\\" + i)
+            os.makedirs(path)
 
 def save_as_copy_loop(d, versions):
     for mxd in os.listdir(d):
@@ -27,7 +28,6 @@ def save_as_copy_loop(d, versions):
                 i = os.path.join(d, mxd)
                 o = os.path.join(root , version , mxd)
                 print("\n    Output: " + o)
-                #arcpy.mapping.MapDocument(mxd).saveACopy(root +"\\"+ version +"\\"+ mxd , version)
                 arcpy.mapping.MapDocument(i).saveACopy(o, version)
 
 def main():
@@ -40,7 +40,7 @@ def main():
 
     start = timeit.default_timer()
     print('\n    PROCESSING ...')
-    #manage_directories(directory)
+    manage_directories(directory)
     save_as_copy_loop(raw_mxds , directory)
     stop = timeit.default_timer()
     print("\n    COMPLETED! Total Run Time: " +  str(stop - start) + " seconds")
